@@ -27,7 +27,20 @@ public class FlightsPage extends BasePage {
     List<WebElement> autoSuggestions;
     @FindBy(xpath = "//*[@class='multiLineDisplay']/b")
     WebElement firstChar;
-
+    @FindBy(xpath = "//*[@id='flight-departing-flp']")
+    WebElement departing;
+    @FindBy(xpath = "//*[@id='flight-returning-flp']")
+    WebElement returning;
+    @FindBy(xpath = "//*[@class='datepicker-cal']")
+    List<WebElement> calendars;
+    @FindBy(xpath = "//*[@class='datepicker-cal']")
+    WebElement calendar;
+    @FindBy (xpath = "//*[@class='datepicker-close-btn close btn-text']")
+    WebElement closeBtn;
+    @FindBy(xpath = "//*[@class='datepicker-cal']")
+    List<WebElement> closeBtns;
+    @FindBy(xpath = "//button[contains(@class,'traveler')]")
+    WebElement travelersDropDown;
 
     public FlightsPage clickOneWay(){
         clickElement(oneWay);
@@ -62,6 +75,32 @@ public class FlightsPage extends BasePage {
     public boolean flyingFromFieldStarts(String letter){
         System.out.println(getTextField(firstChar));
         return getTextField(firstChar).startsWith(letter);
-
     }
+
+    public FlightsPage clickDepartingData(){
+        clickElement(departing);
+        return this;
+    }
+
+    public boolean isCalendarDisplayed(int value){
+        if (value==0){
+            wait.until(ExpectedConditions.invisibilityOfAllElements(closeBtns));
+        } else {
+            wait.until(ExpectedConditions.visibilityOfAllElements(closeBtns));
+        }
+
+        return calendars.size()==value;
+    }
+
+    public FlightsPage closeCalendar(){
+        wait.until(ExpectedConditions.visibilityOfAllElements(closeBtns));
+        clickElement(closeBtn);
+        return this;
+    }
+
+    public FlightsPage clickTravelersDD(){
+        clickElement(travelersDropDown);
+        return this;
+    }
+
 }
