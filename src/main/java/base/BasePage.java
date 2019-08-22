@@ -9,9 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
 
-    private WebDriver driver;
-    private WebDriverWait wait;
-    private Actions actions;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected Actions actions;
 
     public BasePage(WebDriver driver){
         this.driver = driver;
@@ -23,12 +23,16 @@ public class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
-    public void sendText(WebElement element){
-        wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys();
+    public void sendText(WebElement element, String text){
+        wait.until(ExpectedConditions.visibilityOf(element)).sendKeys(text);
     }
 
     public boolean elementInvisible(WebElement element){
         return wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+
+    public String getTextField(WebElement element){
+        return wait.until(ExpectedConditions.visibilityOf(element)).getText();
     }
 
 

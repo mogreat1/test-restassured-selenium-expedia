@@ -28,4 +28,17 @@ public class FlightsTests extends BaseTest {
     flightsPage.clickOneWay();
     Assert.assertTrue(flightsPage.isReturningDataInvisible());
     }
+
+    @Test
+    private void autoSuggestionTest(){
+    flightsPage.sendText("k");
+    Assert.assertEquals(flightsPage.amountAutoSuggestions(), 10);
+    }
+
+    @Test
+    private void lastFromAutoSuggStarsFromLetterTest(){
+        String letter = "S";
+        flightsPage.sendText(letter).chooseLastAutoSugg().clickSpaceFlyingFrom();
+        Assert.assertTrue(flightsPage.flyingFromFieldStarts(letter));
+    }
 }

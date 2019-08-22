@@ -24,7 +24,7 @@ public class BaseTest {
 
         FileInputStream fis;
         try {
-            fis = new FileInputStream("../FreeCRM/variables.properties");
+            fis = new FileInputStream("../ExpediaTest/main.properties");
             prop.load(fis);
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
