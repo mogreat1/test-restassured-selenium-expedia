@@ -55,7 +55,31 @@ public class FlightsTests extends BaseTest {
     }
 
     @Test
-    private void threeGroupsInTravelers(){
-        String[] groups = {"Adults", "Children", "Infants"};
+    private void threeGroupsInTravelersTest(){
+        flightsPage.clickTravelersDD();
+        Assert.assertTrue(flightsPage.areAllTravelersGroupsPresent());
+    }
+
+    @Test
+    private void addChildTest(){
+        flightsPage.clickTravelersDD().clickAddChild();
+        Assert.assertTrue(flightsPage.isChildAgeDDDisplayed());
+    }
+
+    @Test
+    private void allChildAgesDisplayedTest(){
+        flightsPage.clickTravelersDD().clickAddChild();
+        Assert.assertTrue(flightsPage.isAllChildAgesDisplayed());
+    }
+
+    @Test
+    private void addCarBoxNotSelectedTest(){
+        Assert.assertFalse(flightsPage.isAddCarBoxSelected());
+    }
+
+    @Test
+    private void saveMessageDisplayedTest(){
+        flightsPage.clickAddCarBox();
+        Assert.assertTrue(flightsPage.isSaveMessageDisplayed());
     }
 }

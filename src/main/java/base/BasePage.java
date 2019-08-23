@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class BasePage {
 
     protected WebDriver driver;
@@ -33,6 +35,15 @@ public class BasePage {
 
     public String getTextField(WebElement element){
         return wait.until(ExpectedConditions.visibilityOf(element)).getText();
+    }
+
+    public boolean isWebElementDisplayed(List<WebElement> elements, boolean expected){
+        int size = wait.until(ExpectedConditions.visibilityOfAllElements(elements)).size();
+        if (expected=true){
+            return size >=1;
+        } else {
+            return size ==0;
+        }
     }
 
 
