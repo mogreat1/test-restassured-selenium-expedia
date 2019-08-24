@@ -11,7 +11,7 @@ public class FlightsTests extends BaseTest {
     @BeforeMethod
     public void setUp(){
         super.setUp();
-        driver.get(prop.getProperty("flightsUrl"));
+        driver.get(prop.getProperty("baseUrl")+prop.getProperty("flightsResource"));
         flightsPage = new FlightsPage(driver);
 
     }
@@ -82,4 +82,5 @@ public class FlightsTests extends BaseTest {
         flightsPage.clickAddCarBox();
         Assert.assertTrue(flightsPage.isSaveMessageDisplayed());
     }
+
 }

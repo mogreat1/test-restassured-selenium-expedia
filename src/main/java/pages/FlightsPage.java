@@ -73,6 +73,12 @@ public class FlightsPage extends BasePage {
     @FindBy(xpath = "//*[text()='Book together and SAVE!']")
     @CacheLookup
     private List<WebElement> saveMessage;
+    @FindBy(xpath = "//*[@id='primary-header-car']")
+    @CacheLookup
+    private WebElement carsWindow;
+    @FindBy(xpath = "//*[@class='utility-nav nav-group cf']/li/a")
+    @CacheLookup
+    private List<WebElement> headerTabs;
 
     public FlightsPage clickOneWay() {
         clickElement(oneWay);
@@ -191,6 +197,13 @@ public class FlightsPage extends BasePage {
         //Finish this method
     }
 
+    public CarsPage clickCarTab(){
+        clickElement(carsWindow);
+        return new CarsPage(driver);
+    }
 
-
+    public CarsPage openCarsWindowInSecondWindow(){
+        openLinkInSecondTab(carsWindow);
+        return new CarsPage(driver);
+    }
 }
