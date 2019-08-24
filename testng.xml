@@ -6,7 +6,7 @@
     </listeners>
     <test name="Regression 1">
         <classes>
-            <class name="tests.FlightsTests"/>
+            <class name="testRunners.TestRunner"/>
         </classes>
     </test>
 </suite>
