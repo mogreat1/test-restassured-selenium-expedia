@@ -10,7 +10,7 @@ public class FlightsTests extends BaseTest {
    private FlightsPage flightsPage;
     @BeforeMethod
     public void setUp(){
-        super.setUp();
+        //super.setUp();
         driver.get(prop.getProperty("flightsUrl"));
         flightsPage = new FlightsPage(driver);
 
@@ -38,8 +38,8 @@ public class FlightsTests extends BaseTest {
     @Test(enabled = true)
     private void lastFromAutoSuggStarsFromLetterTest(){
         String letter = "S";
-        flightsPage.sendText(letter).chooseLastAutoSugg().clickSpaceFlyingFrom();
-        Assert.assertTrue(flightsPage.flyingFromFieldStarts(letter));
+        flightsPage.sendText("S").chooseLastAutoSugg().clickSpaceFlyingFrom();
+        Assert.assertTrue(flightsPage.flyingFromFieldStarts("S"));
     }
 
     @Test(enabled = true)
