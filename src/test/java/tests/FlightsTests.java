@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.FlightsPage;
+import pages.LoginPage;
 
 public class FlightsTests extends BaseTest {
    private FlightsPage flightsPage;
@@ -81,6 +82,12 @@ public class FlightsTests extends BaseTest {
     private void saveMessageDisplayedTest(){
         flightsPage.clickAddCarBox();
         Assert.assertTrue(flightsPage.isSaveMessageDisplayed());
+    }
+
+    @Test
+    private void loadSignInPageTest(){
+        LoginPage loginPage =flightsPage.clickAccountBtn().clickSignInBtn();
+        Assert.assertTrue(loginPage.isSignUpBtnDisplayed());
     }
 
 }

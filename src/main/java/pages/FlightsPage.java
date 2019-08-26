@@ -79,6 +79,13 @@ public class FlightsPage extends BasePage {
     @FindBy(xpath = "//*[@class='utility-nav nav-group cf']/li/a")
     @CacheLookup
     private List<WebElement> headerTabs;
+    @FindBy(xpath = "//*[@id='header-account-menu']")
+    @CacheLookup
+    private WebElement accountBtn;
+    @FindBy(xpath = "//*[@id='account-signin']")
+    @CacheLookup
+    private WebElement signInBtn;
+
 
     public FlightsPage clickOneWay() {
         clickElement(oneWay);
@@ -205,5 +212,15 @@ public class FlightsPage extends BasePage {
     public CarsPage openCarsWindowInSecondWindow(){
         openLinkInSecondTab(carsWindow);
         return new CarsPage(driver);
+    }
+
+    public FlightsPage clickAccountBtn(){
+        clickElement(accountBtn);
+        return this;
+    }
+
+    public LoginPage clickSignInBtn(){
+        clickElement(signInBtn);
+        return new LoginPage(driver);
     }
 }
