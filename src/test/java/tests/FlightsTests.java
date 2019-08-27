@@ -49,25 +49,25 @@ public class FlightsTests extends BaseTest {
         Assert.assertTrue(flightsPage.isCalendarDisplayed(1));
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     private void closeCalendarTest(){
         flightsPage.clickDepartingData().closeCalendar();
         Assert.assertTrue(flightsPage.isCalendarDisplayed(0));
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     private void threeGroupsInTravelersTest(){
         flightsPage.clickTravelersDD();
         Assert.assertTrue(flightsPage.areAllTravelersGroupsPresent());
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     private void addChildTest(){
         flightsPage.clickTravelersDD().clickAddChild();
         Assert.assertTrue(flightsPage.isChildAgeDDDisplayed());
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     private void allChildAgesDisplayedTest(){
         flightsPage.clickTravelersDD().clickAddChild();
         Assert.assertTrue(flightsPage.isAllChildAgesDisplayed());
@@ -78,7 +78,7 @@ public class FlightsTests extends BaseTest {
         Assert.assertFalse(flightsPage.isAddCarBoxSelected());
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     private void saveMessageDisplayedTest(){
         flightsPage.clickAddCarBox();
         Assert.assertTrue(flightsPage.isSaveMessageDisplayed());

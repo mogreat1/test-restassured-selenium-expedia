@@ -8,6 +8,8 @@
     <test name="Regression 1">
         <classes>
             <class name="tests.FlightsTests"/>
+            <class name="tests.CarsTests"/>
+            <class name="tests.FlightsTests"/>
         </classes>
     </test>
 </suite>

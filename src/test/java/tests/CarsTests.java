@@ -19,7 +19,7 @@ public class CarsTests extends BaseTest {
         flightsPage = new FlightsPage(driver);
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     private void getToCarsPageFromFlightsTest() {
         flightsPage.openCarsWindowInSecondWindow();
         Assert.assertTrue(flightsPage.clickCarTab().isCarsPageTitleDisplayed());
@@ -31,7 +31,7 @@ public class CarsTests extends BaseTest {
         Assert.assertTrue(carsPage.isSecondWindowTitleCars());
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     private void carsTabsAmountTest(){
         flightsPage.openCarsWindowInSecondWindow();
         Assert.assertTrue(carsPage.isTabsAmountFour());
