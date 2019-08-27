@@ -19,7 +19,7 @@ public class BaseTest {
     public Logger log;
 
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod()
     public void setUp(){
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -39,7 +39,7 @@ public class BaseTest {
 
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod()
     public void tearDown(){
         driver.quit();
     }

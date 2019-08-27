@@ -11,7 +11,7 @@ public class CarsTests extends BaseTest {
     private CarsPage carsPage;
     private FlightsPage flightsPage;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod()
     public void setUp() {
         super.setUp();
         driver.get(prop.getProperty("baseUrl") + prop.getProperty("flightsResource"));
@@ -19,7 +19,7 @@ public class CarsTests extends BaseTest {
         flightsPage = new FlightsPage(driver);
     }
 
-    @Test(enabled = true, groups = {"functionalTest"})
+    @Test(enabled = true)
     private void getToCarsPageFromFlightsTest() {
         flightsPage.openCarsWindowInSecondWindow();
         Assert.assertTrue(flightsPage.clickCarTab().isCarsPageTitleDisplayed());

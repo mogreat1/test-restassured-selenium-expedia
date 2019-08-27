@@ -1,8 +1,8 @@
-C:\Users\mosipa\IdeaProjects\ExpediaTest\src\main\java\listeners\ExtentReportListener.java
-C:\Users\mosipa\IdeaProjects\ExpediaTest\src\main\java\pages\LoginPage.java
-C:\Users\mosipa\IdeaProjects\ExpediaTest\src\main\java\pages\CarsPage.java
-C:\Users\mosipa\IdeaProjects\ExpediaTest\src\main\java\analyzer\RetryAnalyzer.java
-C:\Users\mosipa\IdeaProjects\ExpediaTest\src\main\java\base\BaseTest.java
-C:\Users\mosipa\IdeaProjects\ExpediaTest\src\main\java\pages\FlightsPage.java
-C:\Users\mosipa\IdeaProjects\ExpediaTest\src\main\java\base\BasePage.java
-C:\Users\mosipa\IdeaProjects\ExpediaTest\src\main\java\analyzer\AnnotationTransformer.java
+E:\workspace\ExpediaTest\src\main\java\pages\FlightsPage.java
+E:\workspace\ExpediaTest\src\main\java\pages\LoginPage.java
+E:\workspace\ExpediaTest\src\main\java\analyzer\AnnotationTransformer.java
+E:\workspace\ExpediaTest\src\main\java\analyzer\RetryAnalyzer.java
+E:\workspace\ExpediaTest\src\main\java\base\BaseTest.java
+E:\workspace\ExpediaTest\src\main\java\listeners\ExtentReportListener.java
+E:\workspace\ExpediaTest\src\main\java\pages\CarsPage.java
+E:\workspace\ExpediaTest\src\main\java\base\BasePage.java
