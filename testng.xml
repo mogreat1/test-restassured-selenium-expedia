@@ -2,7 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Parallel test suite" parallel="methods" thread-count="1">
     <listeners>
-        <listener class-name="anylizer.AnnotationTransformer"></listener>
+        <listener class-name="analyzer.AnnotationTransformer"/>
+        <listener class-name="listeners.ExtentReportListener"/>
     </listeners>
     <test name="Regression 1">
         <classes>

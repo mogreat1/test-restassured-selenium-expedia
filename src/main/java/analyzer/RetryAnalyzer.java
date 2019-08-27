@@ -1,4 +1,4 @@
-package anylizer;
+package analyzer;
 
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;

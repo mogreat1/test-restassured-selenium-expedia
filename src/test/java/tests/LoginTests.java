@@ -29,7 +29,7 @@ public class LoginTests extends BaseTest {
 
     @DataProvider(name = "loginDataProvider")
     public Object[][] loginData() {
-        return new Object[][] { {"", ""},{ "one@asd.as", "" }, { "", "45644534" },
-                { "three", "7809879" }, { "thr@ee.rr", "789hjkl!" } };
+        return new Object[][] { {"", ""}/*,{ "one@asd.as", "" }, { "", "45644534" },
+                { "three", "7809879" }, { "thr@ee.rr", "789hjkl!" } */};
     }
 }

@@ -17,68 +17,68 @@ public class FlightsTests extends BaseTest {
 
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     private void mainUrlTest(){
         String url =driver.getCurrentUrl();
         Assert.assertEquals(url, prop.getProperty("flightsUrl"));
 
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     private void switchOneWayTest(){
     flightsPage.clickOneWay();
     Assert.assertTrue(flightsPage.isReturningDataInvisible());
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     private void autoSuggestionTest(){
     flightsPage.sendText("k");
     Assert.assertEquals(flightsPage.amountAutoSuggestions(), 10);
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     private void lastFromAutoSuggStarsFromLetterTest(){
         String letter = "S";
         flightsPage.sendText(letter).chooseLastAutoSugg().clickSpaceFlyingFrom();
         Assert.assertTrue(flightsPage.flyingFromFieldStarts(letter));
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     private void calendarDisplayedTest(){
         flightsPage.clickDepartingData();
         Assert.assertTrue(flightsPage.isCalendarDisplayed(1));
     }
 
-    @Test
+    @Test(enabled = false)
     private void closeCalendarTest(){
         flightsPage.clickDepartingData().closeCalendar();
         Assert.assertTrue(flightsPage.isCalendarDisplayed(0));
     }
 
-    @Test
+    @Test(enabled = false)
     private void threeGroupsInTravelersTest(){
         flightsPage.clickTravelersDD();
         Assert.assertTrue(flightsPage.areAllTravelersGroupsPresent());
     }
 
-    @Test
+    @Test(enabled = false)
     private void addChildTest(){
         flightsPage.clickTravelersDD().clickAddChild();
         Assert.assertTrue(flightsPage.isChildAgeDDDisplayed());
     }
 
-    @Test
+    @Test(enabled = false)
     private void allChildAgesDisplayedTest(){
         flightsPage.clickTravelersDD().clickAddChild();
         Assert.assertTrue(flightsPage.isAllChildAgesDisplayed());
     }
 
-    @Test
+    @Test(enabled = true)
     private void addCarBoxNotSelectedTest(){
         Assert.assertFalse(flightsPage.isAddCarBoxSelected());
     }
 
-    @Test
+    @Test(enabled = false)
     private void saveMessageDisplayedTest(){
         flightsPage.clickAddCarBox();
         Assert.assertTrue(flightsPage.isSaveMessageDisplayed());

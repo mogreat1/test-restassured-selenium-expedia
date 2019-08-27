@@ -1,5 +1,7 @@
 package base;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -14,6 +16,8 @@ public class BaseTest {
 
     public WebDriver driver;
     public Properties prop;
+    public Logger log;
+
 
     @BeforeMethod
     public void setUp(){
@@ -21,6 +25,7 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         prop = new Properties();
+        log = LogManager.getLogger();
 
         FileInputStream fis;
         try {

@@ -1,4 +1,4 @@
-package anylizer;
+package analyzer;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
