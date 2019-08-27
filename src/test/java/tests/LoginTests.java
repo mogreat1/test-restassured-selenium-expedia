@@ -10,18 +10,17 @@ import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
 
-    private FlightsPage flightsPage;
     private LoginPage loginPage;
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp(){
         super.setUp();
         driver.get(prop.getProperty("baseUrl")+prop.getProperty("flightsResource"));
-        flightsPage = new FlightsPage(driver);
-        loginPage =flightsPage.clickAccountBtn().clickSignInBtn();
+        FlightsPage flightsPage = new FlightsPage(driver);
+        loginPage = flightsPage.clickAccountBtn().clickSignInBtn();
 
     }
 
-    @Test(dataProvider = "loginDataProvider")
+    @Test(dataProvider = "loginDataProvider", groups = {"functionalTest"})
     private void invalidCredentialsTest(String login, String password){
         loginPage.sendLogin(login).sendPassword(password).clickSignInBtn();
         Assert.assertTrue(loginPage.areLoginErrorDisplayed());

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parallel test suite" parallel="methods" thread-count="1">
+    <listeners>
+        <listener class-name="analyzer.AnnotationTransformer"/>
+        <listener class-name="listeners.ExtentReportListener"/>
+    </listeners>
+    <test name="Smoke">
+        <groups>
+            <run>
+                <include name="smokeTest"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.CarsTests"/>
+            <class name="tests.FlightsTests"/>
+            <class name="tests.LoginTests"/>
+        </classes>
+    </test>
+</suite>

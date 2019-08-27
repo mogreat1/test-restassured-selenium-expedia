@@ -5,7 +5,13 @@
         <listener class-name="analyzer.AnnotationTransformer"/>
         <listener class-name="listeners.ExtentReportListener"/>
     </listeners>
-    <test name="Regression 1">
+    <test name="Regression">
+        <groups>
+            <run>
+                <include name="functionalTest"/>
+                <include name="smokeTest"/>
+            </run>
+        </groups>
         <classes>
             <class name="tests.FlightsTests"/>
             <class name="tests.CarsTests"/>
