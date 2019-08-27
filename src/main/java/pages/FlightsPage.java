@@ -1,6 +1,7 @@
 package pages;
 
 import base.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,10 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class FlightsPage extends BasePage {
     public FlightsPage(WebDriver driver) {
@@ -32,7 +30,7 @@ public class FlightsPage extends BasePage {
     private WebElement flyingFromField;
     @FindBy(xpath = "//*[@class='results-item']")
     @CacheLookup
-    private List<WebElement> autoSuggestions;
+    private WebElement autoSuggestions;
     @FindBy(xpath = "//*[@class='multiLineDisplay']/b")
     @CacheLookup
     private WebElement firstChar;
@@ -71,7 +69,7 @@ public class FlightsPage extends BasePage {
     private WebElement addCarBox;
     @FindBy(xpath = "//*[text()='Book together and SAVE!']")
     @CacheLookup
-    private List<WebElement> saveMessage;
+    private WebElement saveMessage;
     @FindBy(xpath = "//*[@id='primary-header-car']")
     @CacheLookup
     private WebElement carsWindow;
@@ -100,14 +98,15 @@ public class FlightsPage extends BasePage {
         return this;
     }
 
-    public long amountAutoSuggestions() {
-        wait.until(ExpectedConditions.visibilityOfAllElements(autoSuggestions)).size();
-        return autoSuggestions.size();
+    public long autoSuggestionAmount() {
+       List<WebElement> list = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class='results-item']")));
+        int size = list.size();
+        System.out.println(size);
+        return size;
     }
 
     public FlightsPage chooseLastAutoSugg() {
-        List<WebElement> list = wait.until(ExpectedConditions.visibilityOfAllElements(autoSuggestions));
-        list.get(0).click();
+        wait.until(ExpectedConditions.visibilityOf(autoSuggestions)).click();
         return this;
     }
 
@@ -199,7 +198,9 @@ public class FlightsPage extends BasePage {
     }
 
     public boolean isSaveMessageDisplayed(){
-        return isWebElementDisplayed(saveMessage, true);
+        List<WebElement> list = new ArrayList<>();
+        list.add(wait.until(ExpectedConditions.visibilityOf(saveMessage)));
+        return isWebElementDisplayed(list, true);
         //Finish this method
     }
 

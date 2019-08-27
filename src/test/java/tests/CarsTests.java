@@ -11,7 +11,7 @@ public class CarsTests extends BaseTest {
     private CarsPage carsPage;
     private FlightsPage flightsPage;
 
-    @BeforeMethod()
+    @BeforeMethod(alwaysRun = true)
     public void setUp() {
         super.setUp();
         driver.get(prop.getProperty("baseUrl") + prop.getProperty("flightsResource"));
@@ -19,10 +19,10 @@ public class CarsTests extends BaseTest {
         flightsPage = new FlightsPage(driver);
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, groups = {"smokeTest"})
     private void getToCarsPageFromFlightsTest() {
         flightsPage.openCarsWindowInSecondWindow();
-        Assert.assertTrue(flightsPage.clickCarTab().isCarsPageTitleDisplayed());
+        Assert.assertTrue(carsPage.isCarsPageTitleDisplayed());
     }
 
     @Test(enabled = true, groups = {"smokeTest"})
@@ -31,7 +31,7 @@ public class CarsTests extends BaseTest {
         Assert.assertTrue(carsPage.isSecondWindowTitleCars());
     }
 
-    @Test(enabled = false, groups = {"functionalTest"})
+    @Test(enabled = true, groups = {"functionalTest"})
     private void carsTabsAmountTest(){
         flightsPage.openCarsWindowInSecondWindow();
         Assert.assertTrue(carsPage.isTabsAmountFour());
