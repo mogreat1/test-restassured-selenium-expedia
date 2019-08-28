@@ -1,14 +1,20 @@
 package base;
 
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 import java.util.List;
 import java.util.Set;
+
+import static io.restassured.RestAssured.given;
 
 public class BasePage {
 
@@ -60,5 +66,10 @@ public class BasePage {
             }
         }
     }
+
+
+
+
+
 
 }
