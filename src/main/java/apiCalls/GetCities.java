@@ -9,35 +9,24 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class GetCities {
+public class GetCities extends ApiUtils{
 
-    @DataProvider(name = "cities")
-    private Object [] citiesNames(){
-        return new Object []  {"AsDFASDF", "Max", "London"};
+    public Response getCitiesCall(String cityName){
+        return given().get("/Library/GetBook.php?AuthorName="+cityName).then().extract().response();
     }
 
-    @Test(dataProvider = "cities")
-    public void test(String city) {
-        System.out.println(getCitiesNames(city));
-
-    }
-
-    public String getCitiesNames(String cityName) {
-        RestAssured.baseURI = "http://216.10.245.166";
-        Response response = given().get("/Library/GetBook.php?AuthorName="+cityName).then().extract().response();
-        int status = response.getStatusCode();
+    public String getCitiesNames(String[] cityNames) {
         String city =null;
-        if(status==200){
-            city =getJsonResponse(response).get("[0].book_name");
-        }else if(status==404){
-            city =null;
+        for(String cityName: cityNames){
+            Response response = getCitiesCall(cityName);
+            int status = response.getStatusCode();
+            if(status==200) {
+                city = getJsonResponse(response).get("[0].book_name");
+                System.out.println(city);
+                break;
+            }
         }
         return city;
-    }
-
-    public JsonPath getJsonResponse(Response response) {
-        String stringResponse = response.asString();
-        return new JsonPath(stringResponse);
     }
 
 }

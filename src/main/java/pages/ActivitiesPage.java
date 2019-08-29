@@ -19,6 +19,10 @@ public class ActivitiesPage extends BasePage {
     private WebElement activitiesSearchField;
     @FindBy(xpath = "//*[@aria-label='Close']")
     private WebElement closeBtn;
+    @FindBy(xpath = "//*[@id='activity-start-alp']")
+    private WebElement dateFrom;
+    @FindBy(xpath = "//*[text()='Date format should be mm/dd/yyyy.']")
+    private WebElement dateFormatError;
 
     public ActivitiesPage sendActivitiesText(String text){
         sendText(activitiesSearchField, text);
@@ -38,6 +42,14 @@ public class ActivitiesPage extends BasePage {
     public ActivitiesPage waitForCloseBtn(){
         wait.until(ExpectedConditions.elementToBeClickable(closeBtn));
         return this;
+    }
+    public ActivitiesPage sendTextDateFrom(String text){
+        sendText(dateFrom, text);
+        return this;
+    }
+
+    public boolean isDateFormatErrorDisplayed(){
+       return wait.until(ExpectedConditions.visibilityOf(dateFormatError)).isDisplayed();
     }
 
 }

@@ -22,12 +22,9 @@ public class ActivitiesTests extends BaseTest {
     @BeforeClass()
     private void getCityName(){
         GetCities  getCities = new GetCities();
-        String [] areas = {"asdfasd"};
-        for(String area: areas){
-            if (getCities.getCitiesNames(area)!=null)
-            cityName = getCities.getCitiesNames(area);
-            break;
-        }
+        String [] areas = {"asdfasd", "London", "Max"};
+            cityName = getCities.getCitiesNames(areas);
+
     }
 
     @BeforeMethod
@@ -38,15 +35,15 @@ public class ActivitiesTests extends BaseTest {
     }
 
     @Test
-    public void searchActivity(){
+    public void searchActivityTest(){
         activitiesPage.clickActivitiesSearchField().sendActivitiesText(cityName).waitForCloseBtn().pressEnterKey().pressEnterKey();
         Assert.assertTrue(new ActivitiesSearchPage(driver).isActiveSearchPageDisplayed());
     }
 
     @Test
-    public void searchActivity2(){
-        activitiesPage.clickActivitiesSearchField().sendActivitiesText(cityName).waitForCloseBtn().pressEnterKey().pressEnterKey();
-        Assert.assertTrue(new ActivitiesSearchPage(driver).isActiveSearchPageDisplayed());
+    public void sendCityNameInDateFromTest(){
+       activitiesPage.sendTextDateFrom(cityName).pressEnterKey();
+       Assert.assertTrue(activitiesPage.isDateFormatErrorDisplayed());
     }
 
     @AfterMethod
