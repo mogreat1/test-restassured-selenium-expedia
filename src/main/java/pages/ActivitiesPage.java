@@ -23,6 +23,10 @@ public class ActivitiesPage extends BasePage {
     private WebElement dateFrom;
     @FindBy(xpath = "//*[text()='Date format should be mm/dd/yyyy.']")
     private WebElement dateFormatError;
+    @FindBy(xpath = "//*[text()='Search']")
+    private WebElement searchBtn;
+
+
 
     public ActivitiesPage sendActivitiesText(String text){
         sendText(activitiesSearchField, text);
@@ -51,5 +55,7 @@ public class ActivitiesPage extends BasePage {
     public boolean isDateFormatErrorDisplayed(){
        return wait.until(ExpectedConditions.visibilityOf(dateFormatError)).isDisplayed();
     }
+
+
 
 }

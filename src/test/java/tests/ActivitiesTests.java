@@ -5,6 +5,9 @@ import base.BaseTest;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.ActivitiesPage;
@@ -35,15 +38,29 @@ public class ActivitiesTests extends BaseTest {
     }
 
     @Test
-    public void searchActivityTest(){
+    private void searchActivityTest(){
         activitiesPage.clickActivitiesSearchField().sendActivitiesText(cityName).waitForCloseBtn().pressEnterKey().pressEnterKey();
         Assert.assertTrue(new ActivitiesSearchPage(driver).isActiveSearchPageDisplayed());
     }
 
     @Test
-    public void sendCityNameInDateFromTest(){
+    private void sendCityNameInDateFromTest(){
        activitiesPage.sendTextDateFrom(cityName).pressEnterKey();
        Assert.assertTrue(activitiesPage.isDateFormatErrorDisplayed());
+    }
+
+    @Test
+    private void staleElementTest(){
+        WebElement element = driver.findElement(By.xpath("//*[text()='Search']"));
+        driver.navigate().refresh();
+        var error = "";
+        try{
+            element.click();
+        } catch (StaleElementReferenceException e){
+            error = e.getMessage();
+        }
+        Assert.assertTrue(error.contains("stale element reference: element is not attached to the page document"));
+
     }
 
     @AfterMethod
