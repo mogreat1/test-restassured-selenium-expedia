@@ -6,11 +6,17 @@ public class NewTests {
 
     @Test
     public void test(){
-        System.out.println("It's test");
+        System.out.println("aaaaaaa");
     }
 
     @Test
     public void test2(){
         System.out.println("Not test but ....");
     }
+
+    @Test
+    public void test3(){
+        System.out.println("Not test but ....");
+    }
+
 }
