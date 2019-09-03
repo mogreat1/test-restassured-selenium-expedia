@@ -2,6 +2,7 @@ package stepDefinition;
 
 import base.BaseTest;
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -49,6 +50,11 @@ public class LoginStepDefinition extends BaseTest {
     @And("^click Sign In button on the Login Page$")
     public void click_sign_in_button_on_the_login_page() throws Throwable {
         loginPage.clickSignInBtn();
+    }
+
+    @After
+    public void tearDown() {
+        super.tearDown();
     }
 
 }

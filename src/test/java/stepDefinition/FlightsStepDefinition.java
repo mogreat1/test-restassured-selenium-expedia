@@ -21,12 +21,6 @@ import java.util.Properties;
 public class FlightsStepDefinition extends BaseTest {
     private FlightsPage flightsPage;
 
-    @Before
-    public void setUp() {
-        super.setUp();
-
-    }
-
     @Given("^Flights Page is loaded$")
     public void flights_page_is_loaded() throws Throwable {
         driver.get(prop.getProperty("flightsUrl"));
@@ -136,10 +130,7 @@ public class FlightsStepDefinition extends BaseTest {
         Assert.assertTrue(flightsPage.isSaveMessageDisplayed());
     }
 
-    @After
-    public void tearDown() {
-        super.tearDown();
-    }
+
 }
 
 
