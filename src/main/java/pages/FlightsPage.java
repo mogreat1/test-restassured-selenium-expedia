@@ -73,6 +73,12 @@ public class FlightsPage extends BasePage {
     @FindBy(xpath = "//*[text()='Book together and SAVE!']")
     @CacheLookup
     private List<WebElement> saveMessage;
+    @FindBy(xpath = "//*[@id='header-account-menu']")
+    @CacheLookup
+    private WebElement accountBtn;
+    @FindBy(xpath = "//*[@id='account-signin']")
+    @CacheLookup
+    private WebElement signInBtn;
 
     public FlightsPage clickOneWay() {
         clickElement(oneWay);
@@ -189,6 +195,16 @@ public class FlightsPage extends BasePage {
     public boolean isSaveMessageDisplayed(){
         return isWebElementDisplayed(saveMessage, true);
         //Finish this method
+    }
+
+    public FlightsPage clickAccountBtn(){
+        clickElement(accountBtn);
+        return this;
+    }
+
+    public LoginPage clickSignInBtn(){
+        clickElement(signInBtn);
+        return new LoginPage(driver);
     }
 
 
