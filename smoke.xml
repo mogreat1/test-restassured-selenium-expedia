@@ -12,7 +12,7 @@
             </run>
         </groups>
         <classes>
-            <class name="tests.CarsTests"/>
+            <class name="tests.OpenCarsTests"/>
             <class name="tests.FlightsTests"/>
             <class name="tests.LoginTests"/>
         </classes>
