@@ -5,25 +5,64 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pages.CustomerAuthorizationPage;
 import pages.FlightsPage;
-import pages.LoginPage;
+import pages.HomePage;
 
 public class LoginTests extends BaseTest {
 
-    private LoginPage loginPage;
+    private CustomerAuthorizationPage loginPage;
+
     @BeforeMethod(alwaysRun = true)
     public void setUp(){
         super.setUp();
         driver.get(prop.getProperty("baseUrl")+prop.getProperty("flightsResource"));
-        FlightsPage flightsPage = new FlightsPage(driver);
-        loginPage = flightsPage.clickAccountBtn().clickSignInBtn();
-
     }
 
-    @Test(dataProvider = "loginDataProvider", groups = {"functionalTest"})
+    @Test
+    private void shouldOpenSignInPopUp(){
+        // when
+        HomePage homePage = new HomePage(driver).clickSignInButton();
+
+        // then
+        Assert.assertTrue(homePage.isSignInButtonDisplayed());
+    }
+
+    @Test
+    private void shouldRedirectToCustomerAuthorizationPageWhenClickPopUpSignInBtn(){
+        // given
+        HomePage homePage = new HomePage(driver).clickSignInButton();
+
+        // when
+        loginPage = homePage.clickPopUpSignInButton();
+
+        // then
+        Assert.assertTrue(loginPage.isContinueButtonDisplayed(true));
+    }
+
+    @Test
+    private void shouldRedirectToCustomerAuthorizationPageWhenProvideEmail(){
+        // given
+        HomePage homePage = new HomePage(driver).clickSignInButton();
+        loginPage = homePage.clickPopUpSignInButton();
+
+        // when
+        CustomerAuthorizationPage customerAuthorizationPage = loginPage
+                .sendTextToPasswordField("email@gmail.com")
+                .clickContinueButton();
+
+        // then
+        Assert.assertTrue(customerAuthorizationPage.isSignUpBtnDisplayed(true));
+    }
+
+
+
+    @Test(dataProvider = "loginDataProvider", groups = {"functionalTest"})//
     private void invalidCredentialsTest(String login, String password){
-        loginPage.sendLogin(login).sendPassword(password).clickSignInBtn();
-        Assert.assertTrue(loginPage.areLoginErrorDisplayed());
+        FlightsPage flightsPage = new FlightsPage(driver);
+//        loginPage = flightsPage.clickSignInBtn();
+//        loginPage.sendLogin(login).sendPassword(password).clickSignInBtn();
+//        Assert.assertTrue(loginPage.isLoginErrorDisplayed());
     }
 
     @DataProvider(name = "loginDataProvider")

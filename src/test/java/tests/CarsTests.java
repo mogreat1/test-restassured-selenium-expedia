@@ -28,8 +28,5 @@ public class CarsTests extends BaseTest {
     private void chosenCorporateOrContractedInDiscountCodeDDResultsSelectInRentalCarCompany() {
         carsPage.clickAdvancedOptions().selectDiscountCode("Corporate or contracted");
         Assert.assertEquals(carsPage.getSelectedOptionCarCompanyDD(), "-- Select from the list --");
-
     }
-
-
 }

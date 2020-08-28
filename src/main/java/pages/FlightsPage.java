@@ -79,7 +79,7 @@ public class FlightsPage extends BasePage {
     @FindBy(xpath = "//*[@id='header-account-menu']")
     @CacheLookup
     private WebElement accountBtn;
-    @FindBy(xpath = "//*[@id='account-signin']")
+    @FindBy(xpath = "//a[text()='Sign in']")
     @CacheLookup
     private WebElement signInBtn;
 
@@ -217,10 +217,5 @@ public class FlightsPage extends BasePage {
     public FlightsPage clickAccountBtn(){
         clickElement(accountBtn);
         return this;
-    }
-
-    public LoginPage clickSignInBtn(){
-        clickElement(signInBtn);
-        return new LoginPage(driver);
     }
 }

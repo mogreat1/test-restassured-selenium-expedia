@@ -12,10 +12,9 @@ public class ActivitiesPage extends BasePage {
     public ActivitiesPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-
     }
 
-    @FindBy(xpath = "//*[@id='activity-destination-alp']")
+    @FindBy(xpath = "//*[@aria-label='Things to do in']")
     private WebElement activitiesSearchField;
     @FindBy(xpath = "//*[@aria-label='Close']")
     private WebElement closeBtn;
@@ -25,8 +24,6 @@ public class ActivitiesPage extends BasePage {
     private WebElement dateFormatError;
     @FindBy(xpath = "//*[text()='Search']")
     private WebElement searchBtn;
-
-
 
     public ActivitiesPage sendActivitiesText(String text){
         sendText(activitiesSearchField, text);

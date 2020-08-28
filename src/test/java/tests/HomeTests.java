@@ -23,40 +23,15 @@ public class HomeTests extends BaseTest {
     }
 
     @Test
-    private void headerLinksValidTest() {
-        int size = homePage.validateHeaderLinks();
-        Assert.assertEquals(size, 1);
-
+    private void shouldOpenCalendarWhenClickCheckInDate() {
+        // when
+        // then
+        Assert.assertTrue(homePage.clickDepartingDate().isDoneBtnDisplayed());
     }
 
     @Test
-    private void urlTest() {
-        int code = homePage.validateLink();
-        Assert.assertEquals(code, 200);
-    }
-
-    @Test
-    private void pastDaysDisabledTest() {
-        homePage.clickDepartingDate();
-        Assert.assertTrue(homePage.isAmountDisabledDaysLess());
-    }
-
-    @Test
-    private void pastDayEnabledTest() {
-        homePage.clickDepartingDate();
-        Assert.assertFalse(homePage.isPastDayEnabled());
-    }
-
-    @Test
-    private void currentDayEnabledTest() {
-        homePage.clickDepartingDate();
-        Assert.assertTrue(homePage.isCurrentDayEnabled());
-    }
-
-    @Test
-    private void currentDayFirstEnabledDayTest() {
-        homePage.clickDepartingDate();
-        Assert.assertTrue(homePage.isCurrentDay());
+    private void shouldHasSixTabsInMainPanel() {
+        Assert.assertTrue(homePage.hasTabsAmount(6));
     }
 
     @Test

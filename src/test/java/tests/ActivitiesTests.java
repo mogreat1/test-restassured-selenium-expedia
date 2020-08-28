@@ -39,7 +39,15 @@ public class ActivitiesTests extends BaseTest {
 
     @Test
     private void searchActivityTest(){
-        activitiesPage.clickActivitiesSearchField().sendActivitiesText(cityName).waitForCloseBtn().pressEnterKey().pressEnterKey();
+        //when
+        activitiesPage
+                .clickActivitiesSearchField()
+                .sendActivitiesText(cityName)
+                .waitForCloseBtn()
+                .pressEnterKey()
+                .pressEnterKey();
+
+        //then
         Assert.assertTrue(new ActivitiesSearchPage(driver).isActiveSearchPageDisplayed());
     }
 

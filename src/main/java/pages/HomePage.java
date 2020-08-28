@@ -2,12 +2,10 @@ package pages;
 
 import base.BasePage;
 import org.openqa.selenium.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.*;
@@ -23,16 +21,24 @@ public class HomePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//*[contains(@id,'primary-header')]")
+    @FindBy(xpath = "//*[@class='uitk-tab-anchor']")
     private List<WebElement> headerLinks;
-    @FindBy(xpath = "//*[@id='package-departing-hp-package']")
-    private WebElement departingDate;
+    @FindBy(xpath = "//*[@id='d1-btn']")
+    private WebElement checkInDate;
     @FindBy(xpath = "//*[@class='datepicker-cal-date disabled']")
     private List<WebElement> disabledDates;
     @FindBy(xpath = "//*[@class='datepicker-cal-date']")
     private List<WebElement> futureDates;
     @FindBy(xpath = "//*[@id='package-advanced-preferred-class-hp-package']")
     private WebElement preferredClass;
+    @FindBy(xpath = "//span[text()='Done']")
+    private WebElement doneBtn;
+    @FindBy(xpath = "//*[@role='presentation']")
+    private List<WebElement>  mainPanelTabs;
+    @FindBy(xpath = "//a[text()='Sign in']")
+    private WebElement  popUpSignInButton;
+    @FindBy(xpath = "//div[text()='Sign in']")
+    private WebElement  signInButton;
 
     public int preferredClassDDSize() {
         Select select = new Select(preferredClass);
@@ -44,10 +50,17 @@ public class HomePage extends BasePage {
         select.selectByVisibleText("Business");
     }
 
-
     public boolean areAllTitlesPresent() {
         boolean result = true;
-        for (String title : createTitleArrayList()) {
+
+        ArrayList<String> titles = new ArrayList<>();
+        titles.add("Cruises: Find Cheap Cruise Deals & Last Minute Cruises | Expedia");
+        titles.add("Car Rental: Cheap Airport Car Rentals & Rental Car Deals | Expedia");
+        titles.add("Vacation Packages: Find Travel Deals for Cheap Vacations | Expedia");
+        titles.add("Hotels: Search Cheap Hotels, Deals, Discounts & Reservations | Expedia");
+        titles.add("Cheap Flights: Airline Tickets, Airfare Deals & One Way Flights | Expedia");
+
+        for (String title : titles) {
             if (!getLinkTitles().contains(title)) {
                 result = false;
                 break;
@@ -58,10 +71,10 @@ public class HomePage extends BasePage {
 
     public HomePage openLinks() {
         int k = 0;
-        for (int i = 0; i < headerLinks.size(); i++) {
+        for (WebElement headerLink : headerLinks) {
             String openLink = Keys.chord(Keys.CONTROL, Keys.ENTER);
             if (k < 5) {
-                headerLinks.get(i).sendKeys(openLink);
+                headerLink.sendKeys(openLink);
                 k++;
             } else {
                 System.out.println("break");
@@ -84,21 +97,12 @@ public class HomePage extends BasePage {
         return titles;
     }
 
-    public ArrayList<String> createTitleArrayList() {
-        ArrayList<String> titles = new ArrayList<>();
-        titles.add("Cruises: Find Cheap Cruise Deals & Last Minute Cruises | Expedia");
-        titles.add("Car Rental: Cheap Airport Car Rentals & Rental Car Deals | Expedia");
-        titles.add("Vacation Packages: Find Travel Deals for Cheap Vacations | Expedia");
-        titles.add("Hotels: Search Cheap Hotels, Deals, Discounts & Reservations | Expedia");
-        titles.add("Cheap Flights: Airline Tickets, Airfare Deals & One Way Flights | Expedia");
-        return titles;
-    }
-
     public int validateHeaderLinks() {
         int k = 0;
-        Set<Integer> set = new HashSet<Integer>();
+        Set<Integer> set = new HashSet<>();
         for (WebElement link : headerLinks) {
             String url = link.getAttribute("href");
+            System.out.println(url);
             int code = given().get(url).then().extract().response().statusCode();
             set.add(code);
             k++;
@@ -109,13 +113,17 @@ public class HomePage extends BasePage {
         return set.size();
     }
 
-    public int validateLink() {
-        int code = given().get("https://www.google.com").then().extract().response().statusCode();
-        return code;
+    public int validateLink(String url) {
+        return given()
+                .get(url)
+                .then()
+                .extract()
+                .response()
+                .statusCode();
     }
 
     public HomePage clickDepartingDate() {
-        clickElement(departingDate);
+        clickElement(checkInDate);
         return this;
     }
 
@@ -142,6 +150,28 @@ public class HomePage extends BasePage {
         System.out.println(date);
         String day = Integer.toString(dayOfMonth);
         return date.contains(day);
+    }
+
+    public boolean isDoneBtnDisplayed() {
+        return doneBtn.isDisplayed();
+    }
+
+    public boolean hasTabsAmount(int count) {
+        return mainPanelTabs.size() == count;
+    }
+
+    public CustomerAuthorizationPage clickPopUpSignInButton() {
+        clickElement(popUpSignInButton);
+        return new CustomerAuthorizationPage(driver);
+    }
+
+    public HomePage clickSignInButton() {
+        clickElement(signInButton);
+        return this;
+    }
+
+    public boolean isSignInButtonDisplayed() {
+        return signInButton.isDisplayed();
     }
 
 }
